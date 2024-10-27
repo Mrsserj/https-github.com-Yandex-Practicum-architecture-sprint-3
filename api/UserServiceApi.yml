@@ -191,6 +191,43 @@ paths:
         '500':
           description: Ошибка сервера
 
+  /set_temperature/{house_id}:
+    put:
+      summary: Установка температуры
+      description: Устанавливает температуру в доме.
+      parameters:
+        - name: house_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Уникальный идентификатор дома
+      requestBody:
+        description: Данные для установки температуры
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                temperature:
+                  type: int
+                  description: Значение температуры
+              required:
+                - temperature
+
+      responses:
+        '200':
+          description: Информация о пользователе успешно обновлена
+        '400':
+          description: Некорректный запрос
+        '404':
+          description: Пользователь не найден
+        '500':
+          description: Ошибка сервера
+
+
   /users/{user_id}/auth:
     post:
       summary: Аутентификация пользователя
