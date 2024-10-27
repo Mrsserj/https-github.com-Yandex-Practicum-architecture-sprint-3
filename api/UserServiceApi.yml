@@ -219,14 +219,71 @@ paths:
 
       responses:
         '200':
-          description: Информация о пользователе успешно обновлена
+          description: Температура успешно установлена
         '400':
           description: Некорректный запрос
         '404':
-          description: Пользователь не найден
+          description: Дом не найден
+        '500':
+          description: Ошибка сервера
+  
+  /turn_off/{house_id}:
+    put:
+      summary: Выключить отопление
+      description: Выключает отопление.
+      parameters:
+        - name: house_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Уникальный идентификатор дома
+      requestBody:
+        description: Пустое тело 
+        required: true
+        content:
+          application/json:
+            schema:
+
+      responses:
+        '200':
+          description: Отопление отключено
+        '400':
+          description: Некорректный запрос
+        '404':
+          description: Дом не найден
         '500':
           description: Ошибка сервера
 
+  /turn_on/{house_id}:
+    put:
+      summary: Включить отопление
+      description: Включает отопление.
+      parameters:
+        - name: house_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Уникальный идентификатор дома
+      requestBody:
+        description: Пустое тело 
+        required: true
+        content:
+          application/json:
+            schema:
+
+      responses:
+        '200':
+          description: Отопление включено
+        '400':
+          description: Некорректный запрос
+        '404':
+          description: Дом не найден
+        '500':
+          description: Ошибка сервера
 
   /users/{user_id}/auth:
     post:
